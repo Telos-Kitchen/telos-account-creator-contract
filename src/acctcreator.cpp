@@ -30,7 +30,7 @@ void acctcreator::activate () {
    setsetting ("active"_n, 1);
 }
 
-void acctcreator::create ( const name& account_to_create, const string& owner_key, const string& active_key) {
+void acctcreator::create ( const name& account_to_create, const public_key& owner_key, const public_key& active_key) {
 
    config_table      config_s (get_self(), get_self().value);
    config c = config_s.get_or_create (get_self(), config());
@@ -41,6 +41,12 @@ void acctcreator::create ( const name& account_to_create, const string& owner_ke
    check (c.settings["active"_n] == 1, "Contract is not active. Exiting.");
 
    string prefix { "EOS" };
+
+   // print (" Account Creator Contract   : ", c.account_creator_contract.to_string(), "\n");
+   // print (" Self                       : ", get_self().to_string(), "\n");
+   // print (" Owner Key                  : ", owner_key, "\n");
+   // print (" Active Key                 : ", active_key, "\n");
+   // print (" Prefix                     : ", prefix, "\n");
 
    action (
       permission_level{get_self(), "active"_n},

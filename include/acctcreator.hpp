@@ -2,6 +2,7 @@
 
 #include <eosio/singleton.hpp>
 #include <eosio/multi_index.hpp>
+#include <eosio/permission.hpp>
 
 using std::string;
 using namespace eosio;
@@ -24,5 +25,5 @@ CONTRACT acctcreator : public contract {
       ACTION pause ();
       ACTION activate ();
       
-      ACTION create ( const name& account_to_create, const string& owner_key, const string& active_key);
+      ACTION create ( const name& account_to_create, const public_key& owner_key, const public_key& active_key);
 };
